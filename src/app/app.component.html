@@ -1,0 +1,42 @@
+<nav class="nav bg-dark text-light" style="height: 60px;">
+  <ul class="nav">
+      <li class="nav-item">
+        <h3 class="nav-link">Condastro com estatisticas</h3>
+      </li>
+  </ul>
+</nav>
+<div class="container mt-2">
+<form ngForm name="pessoa" class="form-group">
+  <div class="col-md-6 mb-1">
+    <input type="text" [(ngModel)]="nome" name="nome" class="form-control" placeholder="Digite seu nome">
+  </div>
+  <div class="col-md-3 mb-1">
+  <input type="text" [(ngModel)]="idade" name="idade" class="form-control" placeholder="Digite sua idade">
+  <button class="btn btn-primary mt-2" (click)="adicionar()" >Adicionar</button>
+  </div>
+</form>
+<hr>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col-md-6">Nome</th>
+      <th scope="col-md-4">Idade</th>
+      <th scope="col-md-2" class="text-center">Excluir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of lista" >
+    <th>{{item.nome}}</th>
+    <th>{{item.idade}}</th>
+    <th class="text-center"><button (click)="excluir(lista.indexOf(item))" >X</button></th>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr>
+<div class="container " >
+  <p>Total cadastrados: {{lista.length}}</p>
+  <p *ngIf="maisVelho.nome != null" >Pessoa mais velha da lista: {{maisVelho.nome}}, com {{maisVelho.idade}} anos</p>
+  <p *ngIf="maisNovo.nome != null">Pessoa mais nova da lista: {{maisNovo.nome}}, com {{maisNovo.idade}} anos</p>
+</div>
+<router-outlet></router-outlet>
